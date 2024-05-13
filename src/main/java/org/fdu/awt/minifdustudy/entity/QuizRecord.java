@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
 import org.fdu.awt.minifdustudy.utils.TimeUtils;
 
 import java.sql.Timestamp;
@@ -29,20 +30,31 @@ public class QuizRecord {
     @Column(nullable = false, name = "user_id")
     private Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
-    private Quiz quiz;
+//    @ManyToOne
+//    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
+//    private Quiz quiz;
 
-//    @Column(nullable = false, name = "quiz_id")
-//    private Long quizId;
+    @Column(nullable = false, name = "quiz_id")
+    private Long quizId;
 
     @Column(nullable = false, name = "answer")
     private String answer;  // 用户回答
 
     @Column(nullable = false, name = "is_correct")
-    private Boolean isCorrect;
+    @Builder.Default
+    private Boolean isCorrect = false;
 
-    @Column(nullable = false, name = "create_time")
+    @Column(nullable = false, name = "create_timestamp")
     @Builder.Default
     private Timestamp createTimestamp = TimeUtils.now();
+
+    public static QuizRecord from(QuizAnswerReq quizAnswerReq, Boolean isCorrect) {
+        return QuizRecord.builder()
+                .userId(quizAnswerReq.getUserId())
+                .quizId(quizAnswerReq.getQuizId())
+//                .quiz(quiz)
+                .answer(quizAnswerReq.getAnswer())
+                .isCorrect(isCorrect)
+                .build();
+    }
 }

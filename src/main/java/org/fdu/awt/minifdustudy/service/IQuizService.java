@@ -5,10 +5,8 @@ import org.fdu.awt.minifdustudy.exception.NotExistsException;
 
 public interface IQuizService {
     /**
-     * 随机选择一道知识自测题
-     *
-     * @throws NotExistsException 当数据库中不存在自测题时，抛出异常
-     * @return 返回随机选择的一道自测题
+     * @throws NotExistsException 当数据库中不存在测试题目时，抛出异常
+     * @return 随机选择的一道测试题目
      */
     QuizDTO getRandomQuizQuestion() throws NotExistsException;
 

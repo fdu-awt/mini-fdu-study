@@ -9,7 +9,11 @@ public class NotExistsException extends Exception {
         super(message);
     }
 
-    public static NotExistsException NotExistsEntity(String entityClassName, String name) {
-        return new NotExistsException(String.format("不存在name为%s的%s", name, entityClassName));
+    public NotExistsException(String entityClassName, Long id) {
+        super(String.format("不存在id为%s的%s", id, entityClassName));
+    }
+
+    public NotExistsException(String entityClassName, String name) {
+        super(String.format("不存在name为%s的%s", name, entityClassName));
     }
 }

@@ -38,7 +38,7 @@ public class QuizController {
         } catch (NotExistsException e) {
             log.warn("getRandomQuizQuestion error", e);
             return ResultFactory.buildFailResult(e.getMessage());
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("getRandomQuizQuestion error", e);
             return ResultFactory.buildInternalServerErrorResult();
         }
