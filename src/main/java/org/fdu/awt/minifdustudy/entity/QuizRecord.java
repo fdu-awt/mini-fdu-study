@@ -36,6 +36,9 @@ public class QuizRecord {
 //    @Column(nullable = false, name = "quiz_id")
 //    private Long quizId;
 
+    @Column(nullable = false, name = "answer")
+    private String answer;  // 用户回答
+
     @Column(nullable = false, name = "is_correct")
     private Boolean isCorrect;
 
