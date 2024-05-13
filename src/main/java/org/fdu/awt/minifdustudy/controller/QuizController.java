@@ -1,7 +1,7 @@
 package org.fdu.awt.minifdustudy.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.fdu.awt.minifdustudy.bo.qa.resp.QuizQuestionResp;
+import org.fdu.awt.minifdustudy.bo.quiz.resp.QuizQuestionResp;
 import org.fdu.awt.minifdustudy.dto.QuizDTO;
 import org.fdu.awt.minifdustudy.exception.NotExistsException;
 import org.fdu.awt.minifdustudy.result.Result;

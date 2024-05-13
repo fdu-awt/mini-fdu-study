@@ -1,4 +1,4 @@
-package org.fdu.awt.minifdustudy.bo.qa.req;
+package org.fdu.awt.minifdustudy.bo.record.req;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

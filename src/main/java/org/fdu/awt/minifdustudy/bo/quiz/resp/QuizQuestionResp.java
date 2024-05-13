@@ -1,4 +1,4 @@
-package org.fdu.awt.minifdustudy.bo.qa.resp;
+package org.fdu.awt.minifdustudy.bo.quiz.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

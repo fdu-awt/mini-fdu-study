@@ -1,6 +1,6 @@
 package org.fdu.awt.minifdustudy.dto;
 
-import org.fdu.awt.minifdustudy.bo.qa.resp.QuizQuestionResp;
+import org.fdu.awt.minifdustudy.bo.quiz.resp.QuizQuestionResp;
 import org.fdu.awt.minifdustudy.entity.Quiz;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
