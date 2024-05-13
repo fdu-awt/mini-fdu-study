@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.fdu.awt.minifdustudy.utils.TimeUtils;
+
+import java.sql.Timestamp;
 
 /**
  * @author Violette
@@ -27,12 +30,16 @@ public class QuizRecord {
     private Long userId;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", insertable = false, updatable = false)
+    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
     private Quiz quiz;
 
 //    @Column(nullable = false, name = "quiz_id")
 //    private Long quizId;
 
     @Column(nullable = false, name = "is_correct")
-    private Long isCorrect;
+    private Boolean isCorrect;
+
+    @Column(nullable = false, name = "create_time")
+    @Builder.Default
+    private Timestamp createTimestamp = TimeUtils.now();
 }
