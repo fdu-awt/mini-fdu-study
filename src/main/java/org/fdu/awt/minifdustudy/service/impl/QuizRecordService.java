@@ -1,5 +1,6 @@
 package org.fdu.awt.minifdustudy.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
@@ -11,10 +12,13 @@ import org.fdu.awt.minifdustudy.service.IQuizRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Violette
  * @date 2024/5/14 0:44
  */
+@Slf4j
 @Service
 public class QuizRecordService implements IQuizRecordService {
     private final QuizRecordDAO quizRecordDAO;
@@ -37,9 +41,15 @@ public class QuizRecordService implements IQuizRecordService {
         }
         // 检查用户作答是否正确，并保存作答记录
         Boolean isCorrect = quiz.getAnswer().equals(quizAnswerReq.getAnswer());
-        QuizRecord quizRecord = QuizRecord.from(quizAnswerReq, isCorrect);
+        QuizRecord quizRecord = QuizRecord.from(quizAnswerReq, quiz, isCorrect);
+        log.info("quiz record = {}", quizRecord);
         quizRecordDAO.save(quizRecord);
 
         return QuizRecordDTO.from(quizRecord, quiz);
+    }
+
+    @Override
+    public List<QuizRecord> getAllQuizRecord() {
+        return quizRecordDAO.findAll();
     }
 }

@@ -2,8 +2,11 @@ package org.fdu.awt.minifdustudy.service;
 
 import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
+import org.fdu.awt.minifdustudy.entity.QuizRecord;
 import org.fdu.awt.minifdustudy.exception.NotExistsException;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface IQuizRecordService {
     /**
@@ -13,4 +16,6 @@ public interface IQuizRecordService {
      */
     @Transactional
     QuizRecordDTO createNewQuizRecord(QuizAnswerReq quizAnswerReq) throws NotExistsException;
+
+    List<QuizRecord> getAllQuizRecord();
 }

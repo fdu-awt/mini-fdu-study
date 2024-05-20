@@ -30,12 +30,12 @@ public class QuizRecord {
     @Column(nullable = false, name = "user_id")
     private Long userId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
-//    private Quiz quiz;
+//    @Column(nullable = false, name = "quiz_id")
+//    private Long quizId;
 
-    @Column(nullable = false, name = "quiz_id")
-    private Long quizId;
+    @ManyToOne
+    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
+    private Quiz quiz;
 
     @Column(nullable = false, name = "answer")
     private String answer;  // 用户回答
@@ -48,11 +48,11 @@ public class QuizRecord {
     @Builder.Default
     private Timestamp createTimestamp = TimeUtils.now();
 
-    public static QuizRecord from(QuizAnswerReq quizAnswerReq, Boolean isCorrect) {
+    public static QuizRecord from(QuizAnswerReq quizAnswerReq, Quiz quiz, Boolean isCorrect) {
         return QuizRecord.builder()
                 .userId(quizAnswerReq.getUserId())
-                .quizId(quizAnswerReq.getQuizId())
-//                .quiz(quiz)
+//                .quizId(quizAnswerReq.getQuizId())
+                .quiz(quiz)
                 .answer(quizAnswerReq.getAnswer())
                 .isCorrect(isCorrect)
                 .build();
