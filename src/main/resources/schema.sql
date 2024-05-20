@@ -1,5 +1,8 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- ----------------------------
+-- Table structure for `quiz`
+-- ----------------------------
 
 DROP TABLE IF EXISTS `quiz`;
 CREATE TABLE `quiz`
@@ -14,6 +17,10 @@ CREATE TABLE `quiz`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
+-- ----------------------------
+-- Table structure for `quiz_record`
+-- ----------------------------
+
 DROP TABLE IF EXISTS `quiz_record`;
 CREATE TABLE `quiz_record`
 (
@@ -25,6 +32,21 @@ CREATE TABLE `quiz_record`
     `create_timestamp` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '答题时间',
     PRIMARY KEY (`id`),
     FOREIGN KEY (`quiz_id`) REFERENCES quiz (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+-- ----------------------------
+-- Table structure for `history`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE `history`
+(
+    `id`    INT          NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255) NOT NULL,
+    `intro` TEXT         NOT NULL,
+    `image` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
