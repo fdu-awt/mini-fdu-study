@@ -8,6 +8,7 @@ import org.fdu.awt.minifdustudy.bo.record.resp.QuizTimeDistributionResp;
 import org.fdu.awt.minifdustudy.bo.record.resp.QuizTopicDistributionResp;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
+import org.fdu.awt.minifdustudy.dto.QuizDTO;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
 import org.fdu.awt.minifdustudy.entity.Quiz;
 import org.fdu.awt.minifdustudy.entity.QuizRecord;
@@ -19,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class QuizRecordService implements IQuizRecordService {
+    private static final Integer WRONG_QUIZ_NUM_TO_ANALYSIZE = 3;
     private final QuizRecordDAO quizRecordDAO;
     private final QuizDAO quizDAO;
 
@@ -126,7 +127,34 @@ public class QuizRecordService implements IQuizRecordService {
 
     @Override
     public QuizReviewResp analyzeQuizReview(Long userId, TimeFilter timeFilter) {
-        return null;
+        // 获取用户某一时间段内的作答记录
+        Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
+        List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        // 过滤留下作答错误的题目，并统计答错的次数
+        Map<QuizDTO, Long> wrongQuestionsCount = quizRecordList.stream()
+                .filter(record -> !record.getIsCorrect())  // 只保留错误作答的记录
+                .collect(Collectors.groupingBy(
+                        record -> QuizDTO.from(record.getQuiz()),  // 根据题目进行分组
+                        Collectors.counting()  // 计算该题答错次数
+                ));
+        // 将Map<QuizDTO, Long>转换为List<Map.Entry<QuizDTO, Long>>并按错误次数降序排序
+        List<Map.Entry<QuizDTO, Long>> sortedEntries = wrongQuestionsCount.entrySet().stream()
+                .sorted(Map.Entry.<QuizDTO, Long>comparingByValue().reversed())  // 按错误次数降序排序
+                .limit(WRONG_QUIZ_NUM_TO_ANALYSIZE)
+                .toList();
+        // 将排序后的条目转换为 Map<QuizDTO, Long>
+        Map<QuizDTO, Long> quizDTOWrongMap = sortedEntries.stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue
+                ));
+        // TODO: 动态获取？
+        List<String> relatedLinks = Arrays.asList("https://example.com/link1", "https://example.com/link2");
+
+        return QuizReviewResp.builder()
+                .quizDTOWrongMap(quizDTOWrongMap)
+                .relatedLinks(relatedLinks)
+                .build();
     }
 
 }

@@ -3,10 +3,7 @@ package org.fdu.awt.minifdustudy.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.fdu.awt.minifdustudy.bo.quiz.resp.QuizQuestionResp;
 import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizAccuracyResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizAnswerResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizTimeDistributionResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizTopicDistributionResp;
+import org.fdu.awt.minifdustudy.bo.record.resp.*;
 import org.fdu.awt.minifdustudy.dto.QuizDTO;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
 import org.fdu.awt.minifdustudy.entity.QuizRecord;
@@ -103,6 +100,17 @@ public class QuizRecordController {
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
             log.error("analyzeQuizTimeDistribution error", e);
+            return ResultFactory.buildInternalServerErrorResult();
+        }
+    }
+
+    @GetMapping("/analyze-quiz-review")
+    public Result analyzeQuizReview(@RequestParam Long userId, @RequestParam String fromTime) {
+        try {
+            QuizReviewResp respData = quizRecordService.analyzeQuizReview(userId, TimeFilter.from(fromTime));
+            return ResultFactory.buildSuccessResult(respData);
+        } catch (RuntimeException e) {
+            log.error("analyzeQuizReview error", e);
             return ResultFactory.buildInternalServerErrorResult();
         }
     }
