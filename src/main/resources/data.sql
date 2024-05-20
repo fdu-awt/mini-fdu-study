@@ -367,10 +367,64 @@ VALUES (73, 'common', -1, '复旦大学校歌的词曲作者是？',
 -- ---------------------
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
-VALUES (1, 1, 1, '披音乐星光，传弦歌魅力', TRUE, '2024-05-4 12:25:30');
+VALUES (1, 1, 1, '披音乐星光，传弦歌魅力', 1, '2024-05-04 12:25:30');
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
-VALUES (2, 1, 2, '钢琴之声，心灵之交', FALSE, '2024-05-12 20:09:36');
+VALUES (2, 1, 2, '钢琴之声，心灵之交', 0, '2024-05-12 20:09:36');
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
-VALUES (3, 1, 3, '舞步中的诗，生命中的歌', FALSE, '2024-05-12 21:15:43');
+VALUES (3, 1, 3, '舞步中的诗，生命中的歌', 0, '2024-05-12 21:15:43');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (4, 4, 37, '出版《烽火中的复旦》一书', 1, '2024-05-20 14:39:48');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (5, 4, 30, '邯郸、江湾、枫林、张江', 1, '2024-05-20 14:39:59');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (6, 4, 21, '渝校', 1, '2024-05-20 14:40:04');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (7, 4, 31, '建设具有世界一流水平的社会主义综合性大学', 1, '2024-05-20 14:40:12');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (8, 4, 15, '徐家汇', 1, '2024-05-20 14:40:16');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (9, 4, 45, '建立纪念碑', 0, '2024-05-20 14:40:23');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (10, 4, 3, 'To dance, to live, to be.', 1, '2024-05-20 14:40:30');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (11, 4, 30, '邯郸、江湾', 0, '2024-05-20 14:40:33');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (12, 4, 15, '吴淞', 0, '2024-05-20 14:41:57');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (13, 4, 3, '舞步中的诗，生命中的歌', 0, '2024-05-20 14:42:04');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (14, 4, 49, '坚守教育文化', 1, '2024-05-20 14:42:08');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (15, 4, 22, '国立', 1, '2024-05-20 14:42:17');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (16, 4, 7, '科技与浪漫的结合', 0, '2024-05-20 14:42:21');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (17, 4, 8, '探索自然界的奥秘', 1, '2024-05-20 14:42:25');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (18, 4, 15, '江湾', 0, '2024-05-20 14:42:30');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (19, 4, 5, '星辰大海，探索无限', 0, '2024-05-20 14:42:33');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (20, 4, 15, '重庆', 0, '2024-05-20 14:42:41');
+
+INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
+VALUES (21, 4, 37, '出版《烽火中的复旦》一书', 1, '2024-05-20 14:42:52');
