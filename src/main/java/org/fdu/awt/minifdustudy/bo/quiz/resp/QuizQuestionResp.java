@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class QuizQuestionResp {
     private Long id;
     private String topic;
-    private Integer dataId;
+    private Integer dataId;  // TODO: -> Long
     private String question;
     private String options;
 
