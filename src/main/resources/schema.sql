@@ -43,9 +43,9 @@ DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history`
 (
     `id`    INT          NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(255) NOT NULL,
-    `intro` TEXT         NOT NULL,
-    `image` VARCHAR(255) NOT NULL,
+    `title` VARCHAR(255) NOT NULL COMMENT '历史故事标题',
+    `intro` TEXT         NOT NULL COMMENT '历史故事简介',
+    `image` VARCHAR(255) NOT NULL COMMENT '历史故事图片的文件名',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
