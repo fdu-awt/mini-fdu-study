@@ -19,7 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Violette
@@ -67,9 +71,12 @@ public class QuizRecordService implements IQuizRecordService {
 
     @Override
     public QuizAccuracyResp analyzeQuizAccuracy(Long userId, TimeFilter timeFilter) {
+        // 获取用户某一时间段内的作答记录
         Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
         List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        // 计算总答题数
         Integer totalCount = quizRecordList.size();
+        // 计算答对题数
         Integer correctCount = (int) quizRecordList.stream().filter(QuizRecord::getIsCorrect).count();
         return QuizAccuracyResp.builder()
                 .totalCount(totalCount)
@@ -79,7 +86,24 @@ public class QuizRecordService implements IQuizRecordService {
 
     @Override
     public List<QuizTopicDistributionResp> analyzeQuizTopicDistribution(Long userId, TimeFilter timeFilter) {
-        return null;
+        // 获取用户某一时间段内的作答记录
+        Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
+        List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        // 按照 topic 分组，统计每个类别的总答题数和答对题数
+        Map<String, QuizTopicDistributionResp> topicDistributionMap = new HashMap<>();
+        for (QuizRecord quizRecord : quizRecordList) {
+            String topic = quizRecord.getQuiz().getTopic();
+            QuizTopicDistributionResp topicDistribution = topicDistributionMap
+                    .getOrDefault(topic, QuizTopicDistributionResp.builder().topic(topic).build());
+            // 更新该类总答题数
+            topicDistribution.setTotalCount(topicDistribution.getTotalCount() + 1);
+            // 更新该类答对题数
+            if (quizRecord.getIsCorrect()) {
+                topicDistribution.setCorrectCount(topicDistribution.getCorrectCount() + 1);
+            }
+            topicDistributionMap.put(topic, topicDistribution);
+        }
+        return new ArrayList<>(topicDistributionMap.values());
     }
 
     @Override

@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QuizTopicDistributionResp {
     String topic; // 答题类别
-    Integer totalCount;  // 该类总答题数
-    Integer correctCount;  // 该类答对的题数
+
+    @Builder.Default
+    Integer totalCount = 0;  // 该类总答题数
+
+    @Builder.Default
+    Integer correctCount = 0;  // 该类答对的题数
 }

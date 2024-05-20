@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
 import org.fdu.awt.minifdustudy.bo.record.resp.QuizAnswerResp;
 import org.fdu.awt.minifdustudy.entity.Quiz;
 import org.fdu.awt.minifdustudy.entity.QuizRecord;
