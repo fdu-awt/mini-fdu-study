@@ -209,6 +209,159 @@ INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
 VALUES (10, 'club', 10, 'FudanACMICPC的slogan是什么？',
         '破题于弹指之间|编程挑战，智慧对决|算法之美，竞赛之魂|代码世界，解题高手', '破题于弹指之间');
 
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (11, 'history', 1, '马相伯倾其家产创办的学院命名为？', '震旦学院|复旦公学|徐家汇学院|重庆学院', '震旦学院');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (12, 'history', 1, '复旦公学是在哪一年正式开学的？', '1902年|1905年|1911年|1917年', '1905年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (13, 'history', 1, '1905年，于右任、邵力子等130名学生为什么愤然脱离震旦？',
+        '学费问题|校址搬迁|为反抗教会势力干预校政|战争影响', '为反抗教会势力干预校政');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (14, 'history', 2, '在哪个时期，吴淞校舍为光复军司令部占用，导致复旦公学一度停办？',
+        '辛亥革命|文化大革命|抗日战争|解放战争', '辛亥革命');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (15, 'history', 2, '复旦公学在1912年到1922年期间的校址是哪里？', '吴淞|徐家汇|江湾|重庆', '徐家汇');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (16, 'history', 2, '1912年到1922年，复旦公学在徐家汇的校舍是借用了哪里？',
+        '李公祠|天文台|光复军司令部|南京临时政府', '李公祠');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (17, 'history', 3, '复旦大学在江湾奠基的时间是？', '1918年|1920年冬|1922年|1929年', '1920年冬');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (18, 'history', 3, '复旦大学在1929年根据什么法律进行改组？', '《教育法》|《大学法》|《大学组织法》|《民法典》',
+        '《大学组织法》');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (19, 'history', 3, '复旦大学在改组后设立了几个学院，分别是什么？',
+        '三个学院：文、理、法|四个学院：文、理、法、商|五个学院：文、理、法、商、工|六个学院：文、理、法、商、工、农',
+        '四个学院：文、理、法、商');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (20, 'history', 4, '抗战爆发后，复旦大学的师生迁移至哪里？', '重庆北碚|上海徐汇|江湾|吴淞', '重庆北碚');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (21, 'history', 4, '复旦大学在重庆北碚建成的战时校园被称为什么？', '渝校|沪校|夏坝|江湾', '渝校');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (22, 'history', 4, '复旦大学（渝校）在1942年由私立改为什么性质的大学？', '私立|国立|公立|市立', '国立');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (23, 'history', 5, '复旦大学在1952年经历了哪一次重要的教育改革？',
+        '教育私有化|全国高校院系调整|教育国有化|教育体制不变', '全国高校院系调整');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (24, 'history', 5, '复旦大学历史上的第一次腾飞是指什么事件？',
+        '1949年上海解放|1952年全国高校院系调整|1959年被认定为全国十六所重点高校之一|复旦大学迁址',
+        '1959年被认定为全国十六所重点高校之一');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (25, 'history', 5, '复旦大学被认定为全国重点高校后，其重点建设的学科基础是什么？', '理工科|文理|商科|医学',
+        '文理');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (26, 'history', 6, '复旦大学在哪一年被确定为“七五”期间重点建设单位？', '1978年|1984年|1990年|1995年', '1984年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (27, 'history', 6, '复旦大学历史上的第二次腾飞是指什么事件？',
+        '1978年被国务院批准为全国重点高校|1984年被确定为“七五”期间重点建设单位|成为全国文理科综合性重点大学|跨入全国首批“211工程”高校建设行列',
+        '跨入全国首批“211工程”高校建设行列');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (28, 'history', 6, '复旦大学在实现第二次腾飞后，成为哪种类型的重点大学？',
+        '全国理工科综合性重点大学|全国文理科综合性重点大学|全国商科综合性重点大学|全国医科综合性重点大学',
+        '全国文理科综合性重点大学');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (29, 'history', 7, '复旦大学与上海医科大学联合在哪一年组建成新的复旦大学？', '1995年|2000年|2005年|2010年',
+        '2000年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (30, 'history', 7, '2005年后，复旦大学校地扩展为哪几个校区？',
+        '邯郸、江湾|邯郸、江湾、枫林|邯郸、江湾、枫林、张江|邯郸、江湾、枫林、徐汇、张江', '邯郸、江湾、枫林、张江');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (31, 'history', 7, '复旦大学在庆祝建校一百周年时，明确了什么样的发展目标？',
+        '建设具有国内领先水平的综合性大学|建设具有世界一流水平的社会主义综合性大学|成为全国最大的高等教育机构|扩大国际合作与交流',
+        '建设具有世界一流水平的社会主义综合性大学');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (35, 'history', 9, '1938年，复旦大学因何原因被迫踏上内迁之路？', '校园扩建|学生数量增加|抗日战争|经济原因',
+        '抗日战争');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (36, 'history', 9, '复旦大学在抗日战争中最终在何处建校复课？', '上海江湾|重庆北碚夏坝|昆明白龙潭|重庆沙坪坝',
+        '重庆北碚夏坝');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (37, 'history', 9, '复旦大学抗战内迁80周年时，学校通过何种方式纪念了这一历史性的迁徙？',
+        '建立纪念碑|举办纪念讲座|出版《烽火中的复旦》一书|拍摄纪录片', '出版《烽火中的复旦》一书');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (38, 'history', 10, '复旦大学在1937年因何决定借用海格路附属实验中学继续办学？',
+        '校园设施升级|抗日战争爆发|学校扩建|学生数量激增', '抗日战争爆发');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (39, 'history', 10, '复旦大夏联合大学的成立时间是哪一年？', '1937年|1938年|1939年|1940年', '1937年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (40, 'history', 10, '复旦大夏联合大学解体后，复旦大学和大夏大学分别在何处继续办学？',
+        '重庆和贵阳|上海和南京|北京和天津|广州和深圳', '重庆和贵阳');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (41, 'history', 11, '1938年2月，复旦大学迁移到北碚黄桷树镇后，得到了哪些方面的支持？',
+        '政府资金支持|当地士绅和民众|国际援助|学生家长', '当地士绅和民众');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (42, 'history', 11, '复旦大学在北碚的新校区正式开学的时间是哪一年？', '1938年|1939年|1940年|1941年', '1939年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (43, 'history', 11, '复旦大学在北碚黄桷树镇建立永久校址后，设立了什么奖项以帮助经济困难的学生？',
+        '嘉陵纱厂纪念奖|复旦奖学金|士绅助学金|政府教育基金', '嘉陵纱厂纪念奖');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (44, 'history', 12, '复旦大学在抗日战争时期面临经济困难，是在哪一年改为国立大学？', '1940年|1941年|1942年|1943年',
+        '1941年');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (45, 'history', 12, '复旦大学创始人马相伯逝世后，校友为纪念他发起了什么活动？',
+        '建立图书馆|建立百龄堂|募捐活动|建立纪念碑', '募捐活动');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (46, 'history', 12, '章益在担任复旦大学校长期间，致力于提升哪方面？', '学校基础设施|教育质量|学生数量|国际交流',
+        '教育质量');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (47, 'history', 13, '复旦大学在1940年成立了哪个学院？', '文学院|理学院|法学院|农学院', '农学院');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (48, 'history', 13, '复旦大学在战时特别注重学生哪方面能力的培养？', '理论知识|实践能力|外语水平|科研能力',
+        '实践能力');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (49, 'history', 13, '复旦大学在战时师资力量的核心是什么？', '国际视野|学术成果|教学经验|坚守教育文化',
+        '坚守教育文化');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (71, 'common', -1,
+        '复旦大学创建于___年，原名复旦公学，是中国人自主创办的第一所高等院校，创始人为中国近代知名教育家___。',
+        '1915年，李登辉|1915年，马相伯|1905年，马相伯|1905年，李登辉', '1905年，马相伯');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (72, 'common', -1,
+        '复旦大学校名“复旦”二字选自《尚书大传虞夏传》中哪一句，意在自强不息，寄托当时中国知识分子自主办学、教育强国的希望？',
+        '大学之道，在明明德|日月之行，若出其中|星汉灿烂，若出其里|日月光华，旦复旦兮', '日月光华，旦复旦兮');
+
+INSERT INTO `quiz` (`id`, `topic`, `data_id`, `question`, `options`, `answer`)
+VALUES (73, 'common', -1, '复旦大学校歌的词曲作者是？',
+        '词：田汉，曲：丰子恺|词：刘大白，曲：聂耳|词：刘大白，曲：丰子恺|词：田汉，曲：聂耳', '词：刘大白，曲：丰子恺');
+
+
 -- ---------------------
 -- Data for `quiz_record`
 -- ---------------------
