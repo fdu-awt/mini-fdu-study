@@ -30,11 +30,13 @@ public class QuizRecord {
     @Column(nullable = false, name = "user_id")
     private Long userId;
 
-//    @Column(nullable = false, name = "quiz_id")
-//    private Long quizId;
-
     @ManyToOne
-    @JoinColumn(name = "quiz_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(
+            name = "quiz_id", // 指定外键列的名称为 quiz_id
+            nullable = false, // 指定此列不能为 null，意味着每个实体必须关联一个 Quiz
+            insertable = true, // 允许在插入时通过 ORM 框架插入这个字段的值
+            updatable = false  // 一旦创建记录后，不允许通过 ORM 框架更新这个字段的值
+    )
     private Quiz quiz;
 
     @Column(nullable = false, name = "answer")
@@ -51,7 +53,6 @@ public class QuizRecord {
     public static QuizRecord from(QuizAnswerReq quizAnswerReq, Quiz quiz, Boolean isCorrect) {
         return QuizRecord.builder()
                 .userId(quizAnswerReq.getUserId())
-//                .quizId(quizAnswerReq.getQuizId())
                 .quiz(quiz)
                 .answer(quizAnswerReq.getAnswer())
                 .isCorrect(isCorrect)
