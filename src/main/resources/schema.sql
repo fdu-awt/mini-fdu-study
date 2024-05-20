@@ -50,5 +50,22 @@ CREATE TABLE `history`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
+-- ----------------------------
+-- Table structure for `club`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `club`;
+CREATE TABLE `club`
+(
+    `id`       INT          NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(255) NOT NULL COMMENT '社团名称',
+    `slogan`   VARCHAR(255) NOT NULL COMMENT '社团口号',
+    `intro`    TEXT         NOT NULL COMMENT '社团简介',
+    `profile`  VARCHAR(255) NOT NULL COMMENT '社团头像图片的文件名',
+    `activity` VARCHAR(255) NOT NULL COMMENT '社团活动图片的文件名',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
 
 SET FOREIGN_KEY_CHECKS = 1;
