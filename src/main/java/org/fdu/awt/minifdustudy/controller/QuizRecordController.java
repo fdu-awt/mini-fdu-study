@@ -50,13 +50,23 @@ public class QuizRecordController {
     }
 
     @GetMapping("/get-all-quiz-record")
-    public Result getAllQuizRecord() {
+    public Result getAllQuizRecord(@RequestParam Long userId) {
         try {
-            List<QuizRecordDTO> respData = quizRecordService.getQuizRecordByTimeFilter(4L, TimeFilter.LAST_WEEK);
-//            List<QuizRecordDTO> respData = quizRecordService.getAllQuizRecord(4L);
+            List<QuizRecordDTO> respData = quizRecordService.getAllQuizRecord(userId);
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
             log.error("getAllQuizRecord error", e);
+            return ResultFactory.buildInternalServerErrorResult();
+        }
+    }
+
+    @GetMapping("/get-quiz-record-by-time-filter")
+    public Result getQuizRecordByTimeFilter(@RequestParam Long userId, @RequestParam String fromTime) {
+        try {
+            List<QuizRecordDTO> respData = quizRecordService.getQuizRecordByTimeFilter(userId, TimeFilter.from(fromTime));
+            return ResultFactory.buildSuccessResult(respData);
+        } catch (RuntimeException e) {
+            log.error("getQuizRecordByTimeFilter error", e);
             return ResultFactory.buildInternalServerErrorResult();
         }
     }

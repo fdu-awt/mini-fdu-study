@@ -9,11 +9,11 @@ public enum TimeFilter {
     LAST_WEEK,
     LAST_MONTH;
 
-    public static TimeFilter from(String value) {
+    public static TimeFilter from(String time) {
         try {
-            return TimeFilter.valueOf(value.toUpperCase());
+            return TimeFilter.valueOf(time.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid value for TimeFilter: " + value);
+            throw new IllegalArgumentException("Invalid value for TimeFilter: " + time);
         }
     }
 }

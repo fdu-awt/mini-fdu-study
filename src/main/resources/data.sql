@@ -424,7 +424,7 @@ INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `
 VALUES (19, 4, 5, '星辰大海，探索无限', 0, '2024-05-20 14:42:33');
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
-VALUES (20, 4, 15, '重庆', 0, '2024-05-20 14:42:41');
+VALUES (20, 4, 15, '重庆', 0, '2024-05-21 14:42:41');
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
-VALUES (21, 4, 37, '出版《烽火中的复旦》一书', 1, '2024-05-20 14:42:52');
+VALUES (21, 4, 37, '出版《烽火中的复旦》一书', 1, '2024-05-21 14:42:52');
