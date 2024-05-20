@@ -19,10 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -108,11 +106,27 @@ public class QuizRecordService implements IQuizRecordService {
 
     @Override
     public List<QuizTimeDistributionResp> analyzeQuizTimeDistribution(Long userId, TimeFilter timeFilter) {
-        return null;
+        // 获取用户某一时间段内的作答记录
+        Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
+        List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        // 按照答题日期分组，统计当日做题数量
+        Map<String, Long> dateDistributionMap = quizRecordList.stream()
+                .collect(Collectors.groupingBy(
+                        quizRecord -> TimeUtils.extractDate(quizRecord.getCreateTimestamp()),
+                        Collectors.counting()
+                ));
+        // 将 Map 中的统计结果转换为 List<QuizTimeDistributionResp>
+        return dateDistributionMap.entrySet().stream()
+                .map(entry -> QuizTimeDistributionResp.builder()
+                        .date(entry.getKey())
+                        .totalCount(entry.getValue().intValue())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     @Override
     public QuizReviewResp analyzeQuizReview(Long userId, TimeFilter timeFilter) {
         return null;
     }
+
 }

@@ -1,7 +1,9 @@
 package org.fdu.awt.minifdustudy.utils;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Violette
@@ -9,10 +11,24 @@ import java.util.Calendar;
  */
 public class TimeUtils {
 
+    /**
+    * @return 当前时间戳
+    */
     public static Timestamp now() {
         return new Timestamp(System.currentTimeMillis());
     }
 
+    /**
+     * @return 提取 Timestamp 中的日期，返回日期的字符串格式
+     */
+    public static String extractDate(Timestamp timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(new Date(timestamp.getTime()));
+    }
+
+    /**
+     * @return 获取某时间段的起始时间戳
+     */
     public static Timestamp getFromTimeBasedOnFilter(TimeFilter filter) {
         Calendar cal = Calendar.getInstance();
         resetTime(cal);
@@ -36,6 +52,9 @@ public class TimeUtils {
         }
     }
 
+    /**
+     * 重置时间戳为当日 00:00:00
+     */
     private static void resetTime(Calendar cal) {
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
