@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class QuizDTO {
     private Long id;
     private String topic;
-    private Integer dataId;
+    private Long dataId;
     private String question;
     private String options;
     private String answer;

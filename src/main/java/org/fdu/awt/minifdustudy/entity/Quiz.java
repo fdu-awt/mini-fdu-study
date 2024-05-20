@@ -27,7 +27,7 @@ public class Quiz {
     private String topic;
 
     @Column(nullable = false, name = "data_id")
-    private Integer dataId;
+    private Long dataId;
 
     @Column(nullable = false, name = "question")
     private String question;
