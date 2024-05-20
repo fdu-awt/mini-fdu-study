@@ -2,20 +2,18 @@ package org.fdu.awt.minifdustudy.utils;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 /**
  * @author Violette
  * @date 2024/5/13 23:43
  */
 public class TimeUtils {
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
 
     public static Timestamp now() {
         return new Timestamp(System.currentTimeMillis());
     }
 
-    public static Timestamp getFromDateBasedOnFilter(TimeFilter filter) {
+    public static Timestamp getFromTimeBasedOnFilter(TimeFilter filter) {
         Calendar cal = Calendar.getInstance();
         resetTime(cal);
 

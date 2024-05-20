@@ -7,5 +7,13 @@ package org.fdu.awt.minifdustudy.utils;
 public enum TimeFilter {
     TODAY,
     LAST_WEEK,
-    LAST_MONTH
+    LAST_MONTH;
+
+    public static TimeFilter from(String value) {
+        try {
+            return TimeFilter.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid value for TimeFilter: " + value);
+        }
+    }
 }

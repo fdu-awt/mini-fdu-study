@@ -11,6 +11,7 @@ import org.fdu.awt.minifdustudy.exception.NotExistsException;
 import org.fdu.awt.minifdustudy.result.Result;
 import org.fdu.awt.minifdustudy.result.ResultFactory;
 import org.fdu.awt.minifdustudy.service.IQuizRecordService;
+import org.fdu.awt.minifdustudy.utils.TimeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,8 @@ public class QuizRecordController {
     @GetMapping("/get-all-quiz-record")
     public Result getAllQuizRecord() {
         try {
-            List<QuizRecord> respData = quizRecordService.getAllQuizRecord();
+            List<QuizRecordDTO> respData = quizRecordService.getQuizRecordByTimeFilter(4L, TimeFilter.LAST_WEEK);
+//            List<QuizRecordDTO> respData = quizRecordService.getAllQuizRecord(4L);
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
             log.error("getAllQuizRecord error", e);

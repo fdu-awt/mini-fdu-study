@@ -9,9 +9,12 @@ import org.fdu.awt.minifdustudy.entity.Quiz;
 import org.fdu.awt.minifdustudy.entity.QuizRecord;
 import org.fdu.awt.minifdustudy.exception.NotExistsException;
 import org.fdu.awt.minifdustudy.service.IQuizRecordService;
+import org.fdu.awt.minifdustudy.utils.TimeFilter;
+import org.fdu.awt.minifdustudy.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -46,7 +49,15 @@ public class QuizRecordService implements IQuizRecordService {
     }
 
     @Override
-    public List<QuizRecord> getAllQuizRecord() {
-        return quizRecordDAO.findAll();
+    public List<QuizRecordDTO> getAllQuizRecord(Long userId) {
+        List<QuizRecord> quizRecordList = quizRecordDAO.findAllByUserId(userId);
+        return QuizRecordDTO.from(quizRecordList);
+    }
+
+    @Override
+    public List<QuizRecordDTO> getQuizRecordByTimeFilter(Long userId, TimeFilter timeFilter) {
+        Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
+        List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        return QuizRecordDTO.from(quizRecordList);
     }
 }

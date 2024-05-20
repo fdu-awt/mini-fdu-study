@@ -11,6 +11,8 @@ import org.fdu.awt.minifdustudy.entity.QuizRecord;
 import org.fdu.awt.minifdustudy.utils.TimeUtils;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Violette
@@ -37,6 +39,10 @@ public class QuizRecordDTO {
                 .isCorrect(quizRecord.getIsCorrect())
                 .createTimestamp(quizRecord.getCreateTimestamp())
                 .build();
+    }
+
+    public static List<QuizRecordDTO> from(List<QuizRecord> quizRecordList) {
+        return quizRecordList.stream().map(QuizRecordDTO::from).collect(Collectors.toList());
     }
 
     public static QuizAnswerResp toQuizAnswerResp(QuizRecordDTO quizRecordDTO) {
