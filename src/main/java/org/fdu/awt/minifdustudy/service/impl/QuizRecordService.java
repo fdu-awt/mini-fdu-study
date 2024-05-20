@@ -2,6 +2,10 @@ package org.fdu.awt.minifdustudy.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
+import org.fdu.awt.minifdustudy.bo.record.resp.QuizAccuracyResp;
+import org.fdu.awt.minifdustudy.bo.record.resp.QuizReviewResp;
+import org.fdu.awt.minifdustudy.bo.record.resp.QuizTimeDistributionResp;
+import org.fdu.awt.minifdustudy.bo.record.resp.QuizTopicDistributionResp;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
@@ -59,5 +63,32 @@ public class QuizRecordService implements IQuizRecordService {
         Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
         List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
         return QuizRecordDTO.from(quizRecordList);
+    }
+
+    @Override
+    public QuizAccuracyResp analyzeQuizAccuracy(Long userId, TimeFilter timeFilter) {
+        Timestamp fromTime = TimeUtils.getFromTimeBasedOnFilter(timeFilter);
+        List<QuizRecord> quizRecordList = quizRecordDAO.findQuizRecordFromTime(userId, fromTime);
+        Integer totalCount = quizRecordList.size();
+        Integer correctCount = (int) quizRecordList.stream().filter(QuizRecord::getIsCorrect).count();
+        return QuizAccuracyResp.builder()
+                .totalCount(totalCount)
+                .correctCount(correctCount)
+                .build();
+    }
+
+    @Override
+    public List<QuizTopicDistributionResp> analyzeQuizTopicDistribution(Long userId, TimeFilter timeFilter) {
+        return null;
+    }
+
+    @Override
+    public List<QuizTimeDistributionResp> analyzeQuizTimeDistribution(Long userId, TimeFilter timeFilter) {
+        return null;
+    }
+
+    @Override
+    public QuizReviewResp analyzeQuizReview(Long userId, TimeFilter timeFilter) {
+        return null;
     }
 }

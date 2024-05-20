@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author Violette
- * @date 2024/5/21 0:46
+ * @date 2024/5/21 1:31
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuizAccuracyResp {
-    Integer totalCount;  // 总答题数
-    Integer correctCount;  // 答对的题数
+public class QuizTopicDistributionResp {
+    String topic; // 答题类别
+    Integer totalCount;  // 该类总答题数
+    Integer correctCount;  // 该类答对的题数
 }

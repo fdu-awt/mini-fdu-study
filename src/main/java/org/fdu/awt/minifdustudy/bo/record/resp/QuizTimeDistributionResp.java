@@ -5,15 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 /**
  * @author Violette
- * @date 2024/5/21 0:46
+ * @date 2024/5/21 1:46
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QuizAccuracyResp {
-    Integer totalCount;  // 总答题数
-    Integer correctCount;  // 答对的题数
+public class QuizTimeDistributionResp {
+    String date;  // 日期
+    Integer totalCount;  // 当日做题总数
 }
