@@ -1,6 +1,40 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for `history`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE `history`
+(
+    `id`    INT          NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255) NOT NULL COMMENT '历史故事标题',
+    `intro` TEXT         NOT NULL COMMENT '历史故事简介',
+    `image` VARCHAR(255) NOT NULL COMMENT '历史故事图片的文件名',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+
+-- ----------------------------
+-- Table structure for `club`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `club`;
+CREATE TABLE `club`
+(
+    `id`       INT          NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(255) NOT NULL COMMENT '社团名称',
+    `slogan`   VARCHAR(255) NOT NULL COMMENT '社团口号',
+    `intro`    TEXT         NOT NULL COMMENT '社团简介',
+    `profile`  VARCHAR(255) NOT NULL COMMENT '社团头像图片的文件名',
+    `activity` VARCHAR(255) NOT NULL COMMENT '社团活动图片的文件名',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+
+-- ----------------------------
 -- Table structure for `quiz`
 -- ----------------------------
 
@@ -17,6 +51,7 @@ CREATE TABLE `quiz`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 
+
 -- ----------------------------
 -- Table structure for `quiz_record`
 -- ----------------------------
@@ -32,38 +67,6 @@ CREATE TABLE `quiz_record`
     `create_timestamp` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '答题时间',
     PRIMARY KEY (`id`),
     FOREIGN KEY (`quiz_id`) REFERENCES quiz (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
-
--- ----------------------------
--- Table structure for `history`
--- ----------------------------
-
-DROP TABLE IF EXISTS `history`;
-CREATE TABLE `history`
-(
-    `id`    INT          NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(255) NOT NULL COMMENT '历史故事标题',
-    `intro` TEXT         NOT NULL COMMENT '历史故事简介',
-    `image` VARCHAR(255) NOT NULL COMMENT '历史故事图片的文件名',
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
-
--- ----------------------------
--- Table structure for `club`
--- ----------------------------
-
-DROP TABLE IF EXISTS `club`;
-CREATE TABLE `club`
-(
-    `id`       INT          NOT NULL AUTO_INCREMENT,
-    `name`     VARCHAR(255) NOT NULL COMMENT '社团名称',
-    `slogan`   VARCHAR(255) NOT NULL COMMENT '社团口号',
-    `intro`    TEXT         NOT NULL COMMENT '社团简介',
-    `profile`  VARCHAR(255) NOT NULL COMMENT '社团头像图片的文件名',
-    `activity` VARCHAR(255) NOT NULL COMMENT '社团活动图片的文件名',
-    PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4;
 

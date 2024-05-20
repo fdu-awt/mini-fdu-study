@@ -216,7 +216,6 @@ VALUES (10, 'club', 10, 'FudanACMICPC的slogan是什么？',
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
 VALUES (1, 1, 1, '披音乐星光，传弦歌魅力', TRUE, '2024-05-4 12:25:30');
 
-
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
 VALUES (2, 1, 2, '钢琴之声，心灵之交', FALSE, '2024-05-12 20:09:36');
 
