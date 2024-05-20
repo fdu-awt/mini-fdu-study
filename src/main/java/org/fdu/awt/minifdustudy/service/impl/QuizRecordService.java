@@ -32,8 +32,6 @@ public class QuizRecordService implements IQuizRecordService {
 
     @Override
     public QuizRecordDTO createNewQuizRecord(QuizAnswerReq quizAnswerReq) throws NotExistsException {
-        // TODO: 检查对应的用户是否存在
-
         // 检查对应的测试题是否存在
         Quiz quiz = quizDAO.findQuizById(quizAnswerReq.getQuizId());
         if (quiz == null) {
@@ -42,10 +40,9 @@ public class QuizRecordService implements IQuizRecordService {
         // 检查用户作答是否正确，并保存作答记录
         Boolean isCorrect = quiz.getAnswer().equals(quizAnswerReq.getAnswer());
         QuizRecord quizRecord = QuizRecord.from(quizAnswerReq, quiz, isCorrect);
-        log.info("quiz record = {}", quizRecord);
         quizRecordDAO.save(quizRecord);
 
-        return QuizRecordDTO.from(quizRecord, quiz);
+        return QuizRecordDTO.from(quizRecord);
     }
 
     @Override

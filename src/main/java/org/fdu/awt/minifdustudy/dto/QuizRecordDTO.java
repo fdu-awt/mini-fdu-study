@@ -28,11 +28,11 @@ public class QuizRecordDTO {
     private Boolean isCorrect;
     private Timestamp createTimestamp = TimeUtils.now();
 
-    public static QuizRecordDTO from(QuizRecord quizRecord, Quiz quiz) {
+    public static QuizRecordDTO from(QuizRecord quizRecord) {
         return QuizRecordDTO.builder()
                 .id(quizRecord.getId())
                 .userId(quizRecord.getUserId())
-                .quiz(quiz)
+                .quiz(quizRecord.getQuiz())
                 .answer(quizRecord.getAnswer())
                 .isCorrect(quizRecord.getIsCorrect())
                 .createTimestamp(quizRecord.getCreateTimestamp())
