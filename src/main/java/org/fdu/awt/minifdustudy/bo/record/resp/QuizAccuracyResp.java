@@ -16,4 +16,6 @@ import lombok.NoArgsConstructor;
 public class QuizAccuracyResp {
     Integer totalCount;  // 总答题数
     Integer correctCount;  // 答对的题数
+    Long rank;  // 排名
+    Long userNum;  // 用户总数
 }

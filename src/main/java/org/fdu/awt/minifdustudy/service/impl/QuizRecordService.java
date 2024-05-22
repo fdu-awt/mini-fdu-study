@@ -6,6 +6,7 @@ import org.fdu.awt.minifdustudy.bo.record.resp.*;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
 import org.fdu.awt.minifdustudy.dao.RecommendLinkDAO;
+import org.fdu.awt.minifdustudy.dto.QuizAccuracyDTO;
 import org.fdu.awt.minifdustudy.dto.QuizDTO;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
 import org.fdu.awt.minifdustudy.entity.Quiz;
@@ -21,6 +22,8 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 /**
  * @author Violette
@@ -77,9 +80,14 @@ public class QuizRecordService implements IQuizRecordService {
         Integer totalCount = quizRecordList.size();
         // 计算答对题数
         Integer correctCount = (int) quizRecordList.stream().filter(QuizRecord::getIsCorrect).count();
+        // 计算用户正确率排名（在所有用户中，时间为所有）
+        List<QuizAccuracyDTO> usersAcc = findAllUsersAccuracy();
+        Long rank = findUserPosition(usersAcc, userId) + 1;
         return QuizAccuracyResp.builder()
                 .totalCount(totalCount)
                 .correctCount(correctCount)
+                .rank(rank)
+                .userNum((long) usersAcc.size())
                 .build();
     }
 
@@ -156,6 +164,41 @@ public class QuizRecordService implements IQuizRecordService {
                 .wrongCountList(wrongCountList)
                 .relatedLinks(RecommendLink.toRecommendLinkResp(relatedLinks))
                 .build();
+    }
+
+    // 获取所有用户的做题记录，并按照正确率降序排序
+    private List<QuizAccuracyDTO> findAllUsersAccuracy() {
+        // 获取所有的答题记录
+        List<QuizRecord> quizRecords = quizRecordDAO.findAll();
+        // 计算每个用户的答对题数和答题总数
+        Map<Long, QuizAccuracyDTO> userAccuracyMap = new HashMap<>();
+        for (QuizRecord quizRecord : quizRecords) {
+            Long userId = quizRecord.getUserId();
+            boolean isCorrect = quizRecord.getIsCorrect();
+            QuizAccuracyDTO userAccuracy = userAccuracyMap.getOrDefault(userId,
+                    QuizAccuracyDTO.builder().userId(userId).build());
+            userAccuracy.setTotalCount(userAccuracy.getTotalCount() + 1); // 答题总数加1
+            if (isCorrect) {
+                userAccuracy.setCorrectCount(userAccuracy.getCorrectCount() + 1); // 答对题数加1
+            }
+            userAccuracyMap.put(userId, userAccuracy);
+        }
+        // 计算每个用户的正确率
+        List<QuizAccuracyDTO> usersAccuracy = userAccuracyMap.values().stream()
+                .peek(QuizAccuracyDTO::calculateAccuracy) // 计算正确率
+                .collect(Collectors.toList());
+        // 根据正确率降序排序
+        usersAccuracy.sort((a, b) -> b.getAccuracy().compareTo(a.getAccuracy()));
+
+        return usersAccuracy;
+    }
+
+    // 查找某用户排序次序的函数
+    private static Long findUserPosition(List<QuizAccuracyDTO> usersAccuracy, Long userId) {
+        OptionalInt index = IntStream.range(0, usersAccuracy.size())
+                .filter(i -> Objects.equals(usersAccuracy.get(i).getUserId(), userId))
+                .findFirst();
+        return (long) index.orElse(-1);
     }
 
 }

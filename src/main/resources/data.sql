@@ -445,7 +445,7 @@ VALUES (1, 'club', '开学在即！各美其美的复旦学生社团在等你！
         'https://news.fudan.edu.cn/2021/0222/c1247a107999/page.htm');
 
 INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
-VALUES (2, 'club', '开学季|你身边的学术类社团，让你兴趣与学术两不误 ①',
+VALUES (2, 'club', '开学季 | 你身边的学术类社团，让你兴趣与学术两不误 ①',
         'https://news.fudan.edu.cn/2021/0926/c60a110110/page.htm');
 
 INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
