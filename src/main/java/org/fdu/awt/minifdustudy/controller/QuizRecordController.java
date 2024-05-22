@@ -74,6 +74,7 @@ public class QuizRecordController {
     @GetMapping("/analyze-quiz-accuracy")
     public Result analyzeQuizAccuracy(@RequestParam Long userId, @RequestParam String fromTime) {
         try {
+            log.info("前端调用了：analyzeQuizAccuracy");
             QuizAccuracyResp respData = quizRecordService.analyzeQuizAccuracy(userId, TimeFilter.from(fromTime));
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
@@ -85,6 +86,7 @@ public class QuizRecordController {
     @GetMapping("/analyze-quiz-topic-distribution")
     public Result analyzeQuizTopicDistribution(@RequestParam Long userId, @RequestParam String fromTime) {
         try {
+            log.info("前端调用了：analyzeQuizTopicDistribution");
             List<QuizTopicDistributionResp> respData = quizRecordService.analyzeQuizTopicDistribution(userId, TimeFilter.from(fromTime));
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
@@ -96,6 +98,7 @@ public class QuizRecordController {
     @GetMapping("/analyze-quiz-time-distribution")
     public Result analyzeQuizTimeDistribution(@RequestParam Long userId, @RequestParam String fromTime) {
         try {
+            log.info("前端调用了：analyzeQuizTimeDistribution");
             List<QuizTimeDistributionResp> respData = quizRecordService.analyzeQuizTimeDistribution(userId, TimeFilter.from(fromTime));
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
@@ -107,6 +110,7 @@ public class QuizRecordController {
     @GetMapping("/analyze-quiz-review")
     public Result analyzeQuizReview(@RequestParam Long userId, @RequestParam String fromTime) {
         try {
+            log.info("前端调用了：analyzeQuizReview");
             QuizReviewResp respData = quizRecordService.analyzeQuizReview(userId, TimeFilter.from(fromTime));
             return ResultFactory.buildSuccessResult(respData);
         } catch (RuntimeException e) {
