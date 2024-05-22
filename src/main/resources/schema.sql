@@ -71,4 +71,20 @@ CREATE TABLE `quiz_record`
   DEFAULT CHARSET = utf8mb4;
 
 
+-- ----------------------------
+-- Table structure for `recommend_link`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `recommend_link`;
+CREATE TABLE `recommend_link`
+(
+    `id`    INT          NOT NULL AUTO_INCREMENT,
+    `topic` VARCHAR(255) NOT NULL COMMENT '推荐的链接主题',
+    `title` VARCHAR(255) NOT NULL COMMENT '推荐的链接标题',
+    `link`  VARCHAR(255) NOT NULL COMMENT '推荐学习的链接',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+
 SET FOREIGN_KEY_CHECKS = 1;

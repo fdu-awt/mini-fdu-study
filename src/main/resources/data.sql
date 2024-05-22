@@ -434,3 +434,32 @@ VALUES (22, 4, 73, '词：田汉，曲：丰子恺', 0, '2024-05-22 15:18:03');
 
 INSERT INTO `quiz_record` (`id`, `user_id`, `quiz_id`, `answer`, `is_correct`, `create_timestamp`)
 VALUES (23, 4, 71, '1905年，马相伯', 1, '2024-05-22 15:20:29');
+
+
+-- ---------------------
+-- Data for `recommend_link`
+-- ---------------------
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (1, 'club', '开学在即！各美其美的复旦学生社团在等你！',
+        'https://news.fudan.edu.cn/2021/0222/c1247a107999/page.htm');
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (2, 'club', '开学季|你身边的学术类社团，让你兴趣与学术两不误 ①',
+        'https://news.fudan.edu.cn/2021/0926/c60a110110/page.htm');
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (3, 'club', '学术类社团大推荐，让你兴趣与学术两不误！②',
+        'https://news.fudan.edu.cn/2021/1005/c60a110171/page.htm');
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (4, 'history', '辉煌校史 (fudan.edu.cn)',
+        'https://www.fudan.edu.cn/449/list.htm');
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (5, 'history', '校史故事 (fudan.edu.cn)',
+        'https://news.fudan.edu.cn/192/list.htm');
+
+INSERT INTO `recommend_link` (`id`, `topic`, `title`, `link`)
+VALUES (6, 'history', '复旦老建筑的前世今生，来了解一下吧！ (fudan.edu.cn)',
+        'https://alumni.fudan.edu.cn/52/90/c29410a414352/page.htm');

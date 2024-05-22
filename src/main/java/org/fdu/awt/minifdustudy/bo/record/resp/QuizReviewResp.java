@@ -17,5 +17,5 @@ import java.util.List;
 @AllArgsConstructor
 public class QuizReviewResp {
     List<QuizWrongCountResp> wrongCountList;  // 做错最多的若干道题，以及做错的次数
-    List<String> relatedLinks;  // 推荐了解的相关知识链接 -- 目前后端先写死
+    List<RecommendLinkResp> relatedLinks;  // 推荐了解的相关知识链接 -- 目前后端先写死
 }

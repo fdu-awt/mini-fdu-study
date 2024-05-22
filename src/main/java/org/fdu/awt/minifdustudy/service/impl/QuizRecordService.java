@@ -5,10 +5,12 @@ import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
 import org.fdu.awt.minifdustudy.bo.record.resp.*;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
+import org.fdu.awt.minifdustudy.dao.RecommendLinkDAO;
 import org.fdu.awt.minifdustudy.dto.QuizDTO;
 import org.fdu.awt.minifdustudy.dto.QuizRecordDTO;
 import org.fdu.awt.minifdustudy.entity.Quiz;
 import org.fdu.awt.minifdustudy.entity.QuizRecord;
+import org.fdu.awt.minifdustudy.entity.RecommendLink;
 import org.fdu.awt.minifdustudy.exception.NotExistsException;
 import org.fdu.awt.minifdustudy.service.IQuizRecordService;
 import org.fdu.awt.minifdustudy.utils.TimeFilter;
@@ -27,14 +29,15 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class QuizRecordService implements IQuizRecordService {
-    private static final Integer WRONG_QUIZ_NUM_TO_ANALYSIZE = 10;
     private final QuizRecordDAO quizRecordDAO;
     private final QuizDAO quizDAO;
+    private final RecommendLinkDAO recommendLinkDAO;
 
     @Autowired
-    public QuizRecordService(QuizRecordDAO quizRecordDAO, QuizDAO quizDAO) {
+    public QuizRecordService(QuizRecordDAO quizRecordDAO, QuizDAO quizDAO, RecommendLinkDAO recommendLinkDAO) {
         this.quizRecordDAO = quizRecordDAO;
         this.quizDAO = quizDAO;
+        this.recommendLinkDAO = recommendLinkDAO;
     }
 
     @Override
@@ -137,7 +140,6 @@ public class QuizRecordService implements IQuizRecordService {
         // 将Map<QuizDTO, Long>转换为List<Map.Entry<QuizDTO, Long>>并按错误次数降序排序
         List<Map.Entry<QuizDTO, Long>> sortedEntries = wrongQuestionsCount.entrySet().stream()
                 .sorted(Map.Entry.<QuizDTO, Long>comparingByValue().reversed())  // 按错误次数降序排序
-                .limit(WRONG_QUIZ_NUM_TO_ANALYSIZE)
                 .toList();
         // 将Map<QuizDTO, Long>转换为List<QuizWrongCountResp>
         List<QuizWrongCountResp> wrongCountList = sortedEntries.stream()
@@ -147,16 +149,12 @@ public class QuizRecordService implements IQuizRecordService {
                         .build())
                 .toList();
 
-        // TODO: 动态获取推荐链接
-        // List<String> relatedLinks = getRelatedLinks();
-        List<String> relatedLinks = Arrays.asList(
-                "https://www.fudan.edu.cn/449/list.htm",
-                "https://news.fudan.edu.cn/192/list.htm",
-                "https://alumni.fudan.edu.cn/52/90/c29410a414352/page.htm");
+        // 获取随机三个推荐链接
+        List<RecommendLink> relatedLinks = recommendLinkDAO.getRandomRecommendLinks();
 
         return QuizReviewResp.builder()
                 .wrongCountList(wrongCountList)
-                .relatedLinks(relatedLinks)
+                .relatedLinks(RecommendLink.toRecommendLinkResp(relatedLinks))
                 .build();
     }
 
