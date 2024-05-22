@@ -2,10 +2,7 @@ package org.fdu.awt.minifdustudy.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fdu.awt.minifdustudy.bo.record.req.QuizAnswerReq;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizAccuracyResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizReviewResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizTimeDistributionResp;
-import org.fdu.awt.minifdustudy.bo.record.resp.QuizTopicDistributionResp;
+import org.fdu.awt.minifdustudy.bo.record.resp.*;
 import org.fdu.awt.minifdustudy.dao.QuizDAO;
 import org.fdu.awt.minifdustudy.dao.QuizRecordDAO;
 import org.fdu.awt.minifdustudy.dto.QuizDTO;
@@ -30,7 +27,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class QuizRecordService implements IQuizRecordService {
-    private static final Integer WRONG_QUIZ_NUM_TO_ANALYSIZE = 3;
+    private static final Integer WRONG_QUIZ_NUM_TO_ANALYSIZE = 10;
     private final QuizRecordDAO quizRecordDAO;
     private final QuizDAO quizDAO;
 
@@ -142,17 +139,23 @@ public class QuizRecordService implements IQuizRecordService {
                 .sorted(Map.Entry.<QuizDTO, Long>comparingByValue().reversed())  // 按错误次数降序排序
                 .limit(WRONG_QUIZ_NUM_TO_ANALYSIZE)
                 .toList();
-        // 将排序后的条目转换为 Map<QuizDTO, Long>
-        Map<QuizDTO, Long> quizDTOWrongMap = sortedEntries.stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue
-                ));
-        // TODO: 动态获取？
-        List<String> relatedLinks = Arrays.asList("https://example.com/link1", "https://example.com/link2");
+        // 将Map<QuizDTO, Long>转换为List<QuizWrongCountResp>
+        List<QuizWrongCountResp> wrongCountList = sortedEntries.stream()
+                .map(entry -> QuizWrongCountResp.builder()
+                        .quiz(entry.getKey())
+                        .wrongCount(entry.getValue())
+                        .build())
+                .toList();
+
+        // TODO: 动态获取推荐链接
+        // List<String> relatedLinks = getRelatedLinks();
+        List<String> relatedLinks = Arrays.asList(
+                "https://www.fudan.edu.cn/449/list.htm",
+                "https://news.fudan.edu.cn/192/list.htm",
+                "https://alumni.fudan.edu.cn/52/90/c29410a414352/page.htm");
 
         return QuizReviewResp.builder()
-                .quizDTOWrongMap(quizDTOWrongMap)
+                .wrongCountList(wrongCountList)
                 .relatedLinks(relatedLinks)
                 .build();
     }
