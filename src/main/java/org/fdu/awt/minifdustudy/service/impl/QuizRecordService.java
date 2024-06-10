@@ -164,7 +164,7 @@ public class QuizRecordService implements IQuizRecordService {
                 .build();
     }
 
-    // 获取所有用户的做题记录，并按照正确率降序排序
+    // 获取所有用户的做题记录，并计算每个用户的答题正确率
     private List<QuizAccuracyDTO> findAllUsersAccuracy() {
         // 获取所有的答题记录
         List<QuizRecord> quizRecords = quizRecordDAO.findAll();
