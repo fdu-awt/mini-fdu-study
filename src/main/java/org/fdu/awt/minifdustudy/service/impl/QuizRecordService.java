@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 /**
  * @author Violette
@@ -82,12 +80,12 @@ public class QuizRecordService implements IQuizRecordService {
         Integer correctCount = (int) quizRecordList.stream().filter(QuizRecord::getIsCorrect).count();
         // 计算用户正确率排名（在所有用户中，时间为所有）
         List<QuizAccuracyDTO> usersAcc = findAllUsersAccuracy();
-        Long rank = findUserPosition(usersAcc, userId) + 1;
+        Integer rank = findUserPosition(usersAcc, userId);
         return QuizAccuracyResp.builder()
                 .totalCount(totalCount)
                 .correctCount(correctCount)
                 .rank(rank)
-                .userNum((long) usersAcc.size())
+                .userNum(usersAcc.size())
                 .build();
     }
 
@@ -166,7 +164,7 @@ public class QuizRecordService implements IQuizRecordService {
                 .build();
     }
 
-    // 获取所有用户的做题记录，并按照正确率降序排序
+    // 获取所有用户的做题记录，并计算每个用户的答题正确率
     private List<QuizAccuracyDTO> findAllUsersAccuracy() {
         // 获取所有的答题记录
         List<QuizRecord> quizRecords = quizRecordDAO.findAll();
@@ -177,28 +175,41 @@ public class QuizRecordService implements IQuizRecordService {
             boolean isCorrect = quizRecord.getIsCorrect();
             QuizAccuracyDTO userAccuracy = userAccuracyMap.getOrDefault(userId,
                     QuizAccuracyDTO.builder().userId(userId).build());
-            userAccuracy.setTotalCount(userAccuracy.getTotalCount() + 1); // 答题总数加1
+            userAccuracy.addTotalCount(); // 答题总数加1
             if (isCorrect) {
-                userAccuracy.setCorrectCount(userAccuracy.getCorrectCount() + 1); // 答对题数加1
+                userAccuracy.addCorrectCount(); // 答对题数加1
             }
             userAccuracyMap.put(userId, userAccuracy);
         }
         // 计算每个用户的正确率
-        List<QuizAccuracyDTO> usersAccuracy = userAccuracyMap.values().stream()
+        return userAccuracyMap.values().stream()
                 .peek(QuizAccuracyDTO::calculateAccuracy) // 计算正确率
                 .collect(Collectors.toList());
-        // 根据正确率降序排序
-        usersAccuracy.sort((a, b) -> b.getAccuracy().compareTo(a.getAccuracy()));
-
-        return usersAccuracy;
     }
 
     // 查找某用户排序次序的函数
-    private static Long findUserPosition(List<QuizAccuracyDTO> usersAccuracy, Long userId) {
-        OptionalInt index = IntStream.range(0, usersAccuracy.size())
-                .filter(i -> Objects.equals(usersAccuracy.get(i).getUserId(), userId))
-                .findFirst();
-        return (long) index.orElse(-1);
+    private static Integer findUserPosition(List<QuizAccuracyDTO> usersAccuracy, Long userId) {
+        // 根据正确率降序排序
+        usersAccuracy.sort((a, b) -> b.getAccuracy().compareTo(a.getAccuracy()));
+        // 计算用户排名，正确率相同时排名相同
+        int rank = 0;
+        int pos = 0;
+        Float lastAcc = -1.0F;
+        for (QuizAccuracyDTO user: usersAccuracy) {
+            // 当前用户准确率和前一个用户相同，则不增加排名，只增加位置
+            if (user.getAccuracy().equals(lastAcc)) {
+                pos++;
+            } else {
+                pos++;
+                rank = pos;
+                lastAcc = user.getAccuracy();
+            }
+            // 找到对应的用户，返回排名
+            if (user.getUserId().equals(userId)) {
+                return rank;
+            }
+        }
+        return null;
     }
 
 }

@@ -32,4 +32,12 @@ public class QuizAccuracyDTO {
             this.accuracy = (float) correctCount / totalCount;
         }
     }
+
+    public void addTotalCount() {
+        this.totalCount++;
+    }
+
+    public void addCorrectCount() {
+        this.correctCount++;
+    }
 }
